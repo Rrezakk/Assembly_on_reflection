@@ -11,6 +11,10 @@ public class ExecutionContext
     {
         _assemblyCommands = assemblyCommands;
         _registerStorage = new RegisterStorage();
+        foreach (var c in assemblyCommands)
+        {
+            c._registerStorage = _registerStorage;
+        }
     }
     private bool LoadScript(string path)
     {
@@ -35,12 +39,17 @@ public class ExecutionContext
             {
                 return false;
             }
-            throw new NotImplementedException();
+            foreach (var command in _script.Commands)
+            {
+                command.AssemblyCommand.Execute(command.Arguments.ToArray());
+            }
+            _registerStorage.Flush();
             return true;
         }
         catch (Exception e)
         {
             Console.WriteLine($"Error during script execution : {e.Message}");
+            _registerStorage.Flush();
             return false;
         }
     }

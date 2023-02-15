@@ -1,6 +1,9 @@
 ﻿using BasicInterface;
 using System.Reflection;
 var folder = Directory.GetCurrentDirectory() + "\\Modules\\";
+if (!Directory.Exists(folder))
+    Directory.CreateDirectory(folder);
+
 var assemblyCommands = LoadAssemblyCommands(folder);
 Console.WriteLine("Loaded commands: ");
 foreach (var command in assemblyCommands)
@@ -13,12 +16,13 @@ while (true)
 {
     Console.Write($"Enter script path: ");
     var path = Console.ReadLine();
+    path = path.Trim('"');
     if (string.IsNullOrEmpty(path))
     {
         Console.WriteLine($"Path must be non-empty");
         continue;
     }
-    var result = ex.ExecuteScript("");
+    var result = ex.ExecuteScript(path);
     Console.WriteLine(result?"Executed successfully":"There was some errors during execution");
 }
 List<IAssemblyCommand> LoadAssemblyCommands(string dllsFolder)

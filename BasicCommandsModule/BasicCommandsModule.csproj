@@ -13,7 +13,7 @@
     <Target Name="CopyDLLs" AfterTargets="Build">
         <Message Text="Executing CopyDLLs task" Importance="High" />
         <Copy SourceFiles="$(TargetDir)$(ProjectName).dll;$(TargetDir)$(ProjectName).pdb"
-         DestinationFolder="C:\Users\Admin\Desktop\Net_lab\Net_lab\bin\Debug\net6.0\Modules" />
+         DestinationFolder="C:\Users\kiril\OneDrive\Рабочий стол\Projects\Assembly_on_reflection\Net_lab\bin\Debug\net6.0\Modules" />
         <Message Text="Copied build files" Importance="High" />
     </Target>
 </Project>
