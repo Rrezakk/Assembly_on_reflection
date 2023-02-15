@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\BasicInterface\BasicInterface.csproj" />
+    </ItemGroup>
+    
+    <Target Name="CopyDLLs" AfterTargets="Build">
+        <Message Text="Executing CopyDLLs task" Importance="High" />
+        <Copy SourceFiles="$(TargetDir)$(ProjectName).dll;$(TargetDir)$(ProjectName).pdb"
+         DestinationFolder="C:\Users\Admin\Desktop\Net_lab\Net_lab\bin\Debug\net6.0\Modules" />
+        <Message Text="Copied build files" Importance="High" />
+    </Target>
+</Project>
